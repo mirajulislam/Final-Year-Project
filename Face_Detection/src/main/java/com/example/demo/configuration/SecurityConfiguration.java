@@ -35,15 +35,20 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
  @Autowired
  private DataSource dataSource;
  
- private final String USERS_QUERY = "select email, tx_user_password,'1' as enabled from create_user where email=? and is_enabled='1'";
- private final String ROLES_QUERY = "select u.email, r.role_name from create_user u inner join create_user_role ur on(u.tx_u_id=ur.tx_u_id) inner join user_roled r on(ur.tx_r_id=r.tx_r_id) where u.email=?";
+ private final String student_QUERY = "select user_name, password ,'1' as enabled from create_student where user_name=?";
+ private final String student_role_query = "select u.user_name, r.role_name from create_student u inner join student_role ur on(u.student_id=ur.student_id) inner join user_roled r on(ur.role_id=r.role_id) where u.user_name=?";
 
+ private final String teacher_QUERY = "select user_name, password ,'1' as enabled  from create_teacher where user_name=?";
+ private final String  teacher_role_query = "select u.user_name, r.role_name from create_teacher u inner join teacher_role ur on(u.teacher_id=ur.teacher_id) inner join user_roled r on(ur.role_id=r.role_id) where u.user_name=?";
+// 
  @Override
  protected void configure(AuthenticationManagerBuilder auth) throws Exception {
   auth.jdbcAuthentication()
   
-   .usersByUsernameQuery(USERS_QUERY)
-   .authoritiesByUsernameQuery(ROLES_QUERY)
+   .usersByUsernameQuery(student_QUERY)
+   .authoritiesByUsernameQuery(student_role_query)
+   .usersByUsernameQuery(teacher_QUERY) 
+   .authoritiesByUsernameQuery(teacher_role_query)
    .dataSource(dataSource)
    .passwordEncoder(bCryptPasswordEncoder);
   
@@ -55,18 +60,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
   http.authorizeRequests()
    .antMatchers("/").permitAll()
 //	.antMatchers("/").permitAll()
-	.antMatchers("/login").permitAll()
-	.antMatchers("/register").permitAll()
 	.antMatchers("/confirm").permitAll()
-	.antMatchers("/home/**").hasAnyAuthority("SUPER_USER", "ADMIN_USER", "SITE_USER")
-	.antMatchers("/admin/**").hasAnyAuthority("SUPER_USER","ADMIN_USER")
+//	.antMatchers("/teacherProfile/**").hasAnyAuthority("STUDENT_USER", "TEACHER_USER", "ADMIN_USER")
+	.antMatchers("/teacherProfile/**").hasAnyAuthority("TEACHER_USER","TEACHER_USER")
     .and().csrf().disable()
    .formLogin().loginPage("/loginsubmit").failureUrl("/login?error=true")
-//   .defaultSuccessUrl("/home")
    .successHandler(sucessHandler)
-   .usernameParameter("email")
-   .passwordParameter("tx_user_password")
-   
+   .usernameParameter("userName")
+   .passwordParameter("password") 
    .and().logout()
    .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
    .logoutSuccessUrl("/")

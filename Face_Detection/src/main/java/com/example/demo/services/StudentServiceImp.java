@@ -34,4 +34,10 @@ public class StudentServiceImp implements StudentService{
 		
 	}
 
+	@Override
+	public Student findByUserName(String userName) {
+		// TODO Auto-generated method stub
+		return studentRepository.findByUserName(userName);
+	}
+
 }

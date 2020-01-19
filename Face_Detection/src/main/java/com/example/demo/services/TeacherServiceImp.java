@@ -32,4 +32,9 @@ public class TeacherServiceImp implements TeacherService{
 		teacherRepository.save(teacher);		
 	}
 
+	@Override
+	public Teacher findByUserName(String userName) {
+		return teacherRepository.findByUserName(userName);
+	}
+
 }

@@ -4,4 +4,5 @@ import com.example.demo.model.Teacher;
 
 public interface TeacherService {
 	public void saveTeache(Teacher teacher);
+    public Teacher findByUserName(String userName);	
 }
