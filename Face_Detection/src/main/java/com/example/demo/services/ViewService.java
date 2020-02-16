@@ -72,13 +72,13 @@ public class ViewService {
 
 	public ModelAndView courseInsert() {
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("profile/course");
+		mav.setViewName("register/course");
         return mav;
 	}
 	
 	public ModelAndView departmentInsert() {
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("profile/department");
+		mav.setViewName("register/department");
         return mav;
 	}
 	
@@ -92,7 +92,7 @@ public class ViewService {
 		model.addAttribute("teacherList",teacherList);
 		model.addAttribute("courseList",courseList);
 		model.addAttribute("departmentList",departmentList);
-		mav.setViewName("profile/department");
+		mav.setViewName("register/courseAssign");
         return mav;
 	}	
 }
