@@ -25,28 +25,17 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
  
  @Autowired
 	private CustomLoginSuccessHandler sucessHandler;
- 
- @Bean
- public BCryptPasswordEncoder passwordEncoder() {
-     BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-     return bCryptPasswordEncoder;
- }
- 
+
  @Autowired
  private DataSource dataSource;
  
- private final String student_QUERY = "select user_name, password ,'1' as enabled from create_student where user_name=?";
- private final String student_role_query = "select u.user_name, r.role_name from create_student u inner join student_role ur on(u.student_id=ur.student_id) inner join user_roled r on(ur.role_id=r.role_id) where u.user_name=?";
-
  private final String teacher_QUERY = "select user_name, password ,'1' as enabled  from create_teacher where user_name=?";
  private final String  teacher_role_query = "select u.user_name, r.role_name from create_teacher u inner join teacher_role ur on(u.teacher_id=ur.teacher_id) inner join user_roled r on(ur.role_id=r.role_id) where u.user_name=?";
 // 
  @Override
  protected void configure(AuthenticationManagerBuilder auth) throws Exception {
   auth.jdbcAuthentication()
-  
-   .usersByUsernameQuery(student_QUERY)
-   .authoritiesByUsernameQuery(student_role_query)
+
    .usersByUsernameQuery(teacher_QUERY) 
    .authoritiesByUsernameQuery(teacher_role_query)
    .dataSource(dataSource)
@@ -59,10 +48,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
  protected void configure(HttpSecurity http) throws Exception{
   http.authorizeRequests()
    .antMatchers("/").permitAll()
-//	.antMatchers("/").permitAll()
+	.antMatchers("/").permitAll()
 	.antMatchers("/confirm").permitAll()
-//	.antMatchers("/teacherProfile/**").hasAnyAuthority("STUDENT_USER", "TEACHER_USER", "ADMIN_USER")
-	.antMatchers("/teacherProfile/**").hasAnyAuthority("TEACHER_USER","TEACHER_USER")
+	.antMatchers("/teacherProfile/**").hasAnyAuthority("TEACHER_USER")
+	.antMatchers("/Teacher-register/**").hasAnyAuthority("TEACHER_USER")
+	.antMatchers("/Student-register/**").hasAnyAuthority("TEACHER_USER")	
+	.antMatchers("/teacherProfile/**").hasAnyAuthority("TEACHER_USER")
+	.antMatchers("/studentProfile/**").hasAnyAuthority("STUDENT_USER")
     .and().csrf().disable()
    .formLogin().loginPage("/loginsubmit").failureUrl("/login?error=true")
    .successHandler(sucessHandler)
