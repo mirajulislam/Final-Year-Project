@@ -13,8 +13,8 @@ public class CourseAssign {
 	private int id;
 	private int studentId;
 	private int teacherId;
-	private int courseId;
-	private int departmentId;
+	private String courseCode;
+	private String departmentShortName;
 	
 	public int getId() {
 		return id;
@@ -34,19 +34,18 @@ public class CourseAssign {
 	public void setTeacherId(int teacherId) {
 		this.teacherId = teacherId;
 	}
-	public int getCourseId() {
-		return courseId;
+	public String getCourseCode() {
+		return courseCode;
 	}
-	public void setCourseId(int courseId) {
-		this.courseId = courseId;
+	public void setCourseCode(String courseCode) {
+		this.courseCode = courseCode;
 	}
-	public int getDepartmentId() {
-		return departmentId;
+	public String getDepartmentShortName() {
+		return departmentShortName;
 	}
-	public void setDepartmentId(int departmentId) {
-		this.departmentId = departmentId;
+	public void setDepartmentShortName(String departmentShortName) {
+		this.departmentShortName = departmentShortName;
 	}
-	
-	
+
 
 }

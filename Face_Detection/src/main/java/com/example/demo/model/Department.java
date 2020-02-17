@@ -12,7 +12,8 @@ public class Department {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int departmentId;
-	private String departmentName;
+	private String departmentFullName;
+	private String departmentShortName;
 	
 	public int getDepartmentId() {
 		return departmentId;
@@ -20,12 +21,17 @@ public class Department {
 	public void setDepartmentId(int departmentId) {
 		this.departmentId = departmentId;
 	}
-	public String getDepartmentName() {
-		return departmentName;
+	public String getDepartmentFullName() {
+		return departmentFullName;
 	}
-	public void setDepartmentName(String departmentName) {
-		this.departmentName = departmentName;
+	public void setDepartmentFullName(String departmentFullName) {
+		this.departmentFullName = departmentFullName;
 	}
-
+	public String getDepartmentShortName() {
+		return departmentShortName;
+	}
+	public void setDepartmentShortName(String departmentShortName) {
+		this.departmentShortName = departmentShortName;
+	}
 
 }

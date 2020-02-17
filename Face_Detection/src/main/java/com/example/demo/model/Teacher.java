@@ -110,8 +110,4 @@ public class Teacher {
 		this.password = password;
 	}
 
-	
-	
-	
-
 }

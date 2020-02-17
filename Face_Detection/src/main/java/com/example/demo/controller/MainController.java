@@ -38,19 +38,19 @@ public class MainController {
 		return viewService.success();
 	}
 	
-	@RequestMapping(value = "/studentRegisterSave", method = RequestMethod.POST)
+	@RequestMapping(value = "/courseSave", method = RequestMethod.POST)
 	public ModelAndView saveCourse(Course course) {
 		saveService.saveCourse(course);
 		return viewService.success();
 	}
 	
-	@RequestMapping(value = "/studentRegisterSave", method = RequestMethod.POST)
+	@RequestMapping(value = "/departSave", method = RequestMethod.POST)
 	public ModelAndView saveDepartment(Department department) {
 		saveService.saveDepartment(department);
 		return viewService.success();
 	}
 	
-	@RequestMapping(value = "/studentRegisterSave", method = RequestMethod.POST)
+	@RequestMapping(value = "/courseAssignSave", method = RequestMethod.POST)
 	public ModelAndView saveCourseAssign(CourseAssign courseAssign) {
 		saveService.saveCourseAssign(courseAssign);
 		return viewService.success();
@@ -99,8 +99,8 @@ public class MainController {
 	}
 	
 	@RequestMapping(value = "/courseInsertView", method = RequestMethod.GET)
-	public ModelAndView courseInsertView() {	 
-		return viewService.courseInsert();
+	public ModelAndView courseInsertView(Model model) {	 
+		return viewService.courseInsert(model);
 	}
 	
 	@RequestMapping(value = "/courseAssignView", method = RequestMethod.GET)

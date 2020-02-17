@@ -13,10 +13,10 @@ public class Course {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int courseId;
-	private int courseName;
+	private String courseName;
 	private int courseCredit;
-	private String courseDepartment;
 	private String courseCode;
+	private String departmentShortName;
 	
 	public int getCourseId() {
 		return courseId;
@@ -24,29 +24,30 @@ public class Course {
 	public void setCourseId(int courseId) {
 		this.courseId = courseId;
 	}
-	public int getCourseName() {
-		return courseName;
-	}
-	public void setCourseName(int courseName) {
-		this.courseName = courseName;
-	}
+
 	public int getCourseCredit() {
 		return courseCredit;
 	}
 	public void setCourseCredit(int courseCredit) {
 		this.courseCredit = courseCredit;
 	}
-	public String getCourseDepartment() {
-		return courseDepartment;
-	}
-	public void setCourseDepartment(String courseDepartment) {
-		this.courseDepartment = courseDepartment;
-	}
 	public String getCourseCode() {
 		return courseCode;
 	}
 	public void setCourseCode(String courseCode) {
 		this.courseCode = courseCode;
+	}
+	public String getCourseName() {
+		return courseName;
+	}
+	public void setCourseName(String courseName) {
+		this.courseName = courseName;
+	}
+	public String getDepartmentShortName() {
+		return departmentShortName;
+	}
+	public void setDepartmentShortName(String departmentShortName) {
+		this.departmentShortName = departmentShortName;
 	}
 	
 	

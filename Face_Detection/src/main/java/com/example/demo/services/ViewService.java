@@ -70,8 +70,10 @@ public class ViewService {
         return mav;
     }
 
-	public ModelAndView courseInsert() {
+	public ModelAndView courseInsert(Model model) {
 		ModelAndView mav = new ModelAndView();
+		List<Department>departmentList=findAllService.listDepartment();
+		model.addAttribute("departmentList",departmentList);
 		mav.setViewName("register/course");
         return mav;
 	}
