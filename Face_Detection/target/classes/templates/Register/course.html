@@ -1,10 +1,109 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+
+<script
+	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<title>Register Form</title>
 </head>
 <body>
 
+
+	<div class="container">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<a class="navbar-brand" href="#"><span th:utext="${userName}"></span></a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active"><a class="nav-link" href="#">Home
+							<span class="sr-only">(current)</span>
+					</a></li>
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/Student-register}">Student Register</a></li>
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/Teacher-register}">Teacher Register</a></li>
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+						role="button" data-toggle="dropdown" aria-haspopup="true"
+						aria-expanded="false"> Type </a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" href="#">Action</a> <a
+								class="dropdown-item" href="#">Another action</a>
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item" href="#">Something else here</a>
+						</div></li>
+					<li class="nav-item"><a class="nav-link" th:href="@{/logout}">Sign
+							out</a></li>
+				</ul>
+				<form class="form-inline my-2 my-lg-0">
+					<input class="form-control mr-sm-2" type="search"
+						placeholder="Search" aria-label="Search">
+					<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+				</form>
+			</div>
+		</nav>
+		<div class="row">
+			<div class="col-md-6">
+				<form action="courseSave" method="post">
+					<fieldset>
+						<legend class="text-center"> Course Registration Form </legend>
+
+						<div class="form-group">
+							<label for="courseName"><span class="req">* </span>
+								Course name: </label> <input class="form-control" type="text"
+								name="courseName" id="courseName"
+								placeholder="enter course name" required />
+						</div>
+
+						<div class="form-group">
+							<label for="courseCredit"><span class="req">* </span>
+								Course credit: </label> <input class="form-control" type="text"
+								name="courseCredit" id="courseCredit"
+								placeholder="enter course credit" required />
+						</div>
+						
+							<select name="departmentShortName" id="departmentShortName" class="form-control">
+								<option value="">.......</option>
+								<option th:each="department:${departmentList}"
+								th:value="${department.departmentShortName}"
+								th:utext="${department.departmentShortName}"></option>
+							</select>						
+
+						<div class="form-group">
+							<label for="courseCode"><span class="req">* </span> Course
+								code:</label> <input class="form-control" type="text"
+								name="courseCode" id="courseCode" placeholder="course code"
+								required />
+						</div>
+
+						<div class="form-group">
+							<input class="btn btn-success" type="submit" name="submit_reg"
+								value="Register">
+						</div>
+
+					</fieldset>
+				</form>
+				<!-- ends register form -->
+			</div>
+			<!-- ends col-6 -->
+
+
+		</div>
+	</div>
 </body>
 </html>
+
+

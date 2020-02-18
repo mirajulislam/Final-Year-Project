@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.model.Course;
+import com.example.demo.model.CourseAssign;
 import com.example.demo.model.Department;
 import com.example.demo.model.Student;
 import com.example.demo.model.Teacher;
@@ -86,10 +87,12 @@ public class ViewService {
 	
 	public ModelAndView courseAssignInsert(Model model) {
 		ModelAndView mav = new ModelAndView();
+		CourseAssign courseAssign=new CourseAssign();
 		List<Student>studentList=findAllService.listStudent();
 		List<Teacher>teacherList=findAllService.listTeacher();
 		List<Course>courseList=findAllService.listCourse();
 		List<Department>departmentList=findAllService.listDepartment();
+		mav.addObject("courseAssign", courseAssign);
 		model.addAttribute("studentList",studentList);
 		model.addAttribute("teacherList",teacherList);
 		model.addAttribute("courseList",courseList);
