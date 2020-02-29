@@ -143,5 +143,10 @@ public class MainController {
 	public ModelAndView takePhotoExample() {
 		return viewService.teacherReg();
 	}
+	
+	@RequestMapping(value = "/searchAttendance", method = RequestMethod.GET)
+	public ModelAndView searchAttendance(Model model) {
+		return viewService.searchAttendance(model);
+	}
 
 }

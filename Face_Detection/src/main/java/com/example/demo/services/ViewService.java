@@ -91,7 +91,7 @@ public class ViewService {
 		List<Student>studentList=findAllService.listStudent();
 		List<Teacher>teacherList=findAllService.listTeacher();
 		List<Course>courseList=findAllService.listCourse();
-		List<Department>departmentList=findAllService.listDepartment();
+		List<Department>departmentList=findAllService.listDepartment();		
 		mav.addObject("courseAssign", courseAssign);
 		model.addAttribute("studentList",studentList);
 		model.addAttribute("teacherList",teacherList);
@@ -99,5 +99,16 @@ public class ViewService {
 		model.addAttribute("departmentList",departmentList);
 		mav.setViewName("register/courseAssign");
         return mav;
-	}	
+	}
+	
+	public ModelAndView searchAttendance(Model model) {
+		ModelAndView mav = new ModelAndView();
+		List<CourseAssign>courseAssign=findAllService.listCourseAssign();
+		model.addAttribute("serachAttendance",courseAssign);
+		mav.setViewName("register/AttendanceSearch");
+		return mav;
+		
+	}
+	
+	
 }

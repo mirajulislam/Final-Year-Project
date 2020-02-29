@@ -10,6 +10,7 @@ import com.example.demo.model.CourseAssign;
 import com.example.demo.model.Department;
 import com.example.demo.model.Student;
 import com.example.demo.model.Teacher;
+import com.example.demo.repository.AttendanceRepository;
 import com.example.demo.repository.CourseAssignRepository;
 import com.example.demo.repository.CourseRepository;
 import com.example.demo.repository.DepartmentRepository;
@@ -28,6 +29,8 @@ public class FindAllService {
     private TeacherRepository teacherRepository;
     @Autowired
     private CourseAssignRepository courseAssignRepository;
+    @Autowired
+    private AttendanceRepository attendanceRepository;
 
     public List<Student>listStudent(){
 		return studentRepository.findAll();   	
@@ -48,4 +51,8 @@ public class FindAllService {
     public List<CourseAssign>listCourseAssign(){
 		return courseAssignRepository.findAll();   	
     }
+    
+//    public List fetchAttendance() {
+//    	return null;
+//    }
 }
