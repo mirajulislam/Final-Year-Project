@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.example.demo.model.Attendance;
 import com.example.demo.model.Course;
 import com.example.demo.model.CourseAssign;
 import com.example.demo.model.Department;
@@ -73,6 +74,13 @@ public class MainController {
 		}
       return model;
 		
+	}
+	
+	@RequestMapping(value = "/serachAtten", method = RequestMethod.POST)
+	public ModelAndView serachAtten(Attendance attendance) {
+		return null;
+//		saveService.saveDepartment(attendance);
+//		return viewService.success();
 	}
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)

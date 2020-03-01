@@ -15,7 +15,7 @@ public class Attendance {
 	private int attendanceId;
 	private Date attendanceDate;
 	private int studentId;
-	private int courseId;
+	private int courseCode;
 	private int isAttendance;
 	private String departmentShortName;
 	
@@ -30,12 +30,6 @@ public class Attendance {
 	}
 	public void setStudentId(int studentId) {
 		this.studentId = studentId;
-	}
-	public int getCourseId() {
-		return courseId;
-	}
-	public void setCourseId(int courseId) {
-		this.courseId = courseId;
 	}
 	public int getIsAttendance() {
 		return isAttendance;
@@ -54,6 +48,12 @@ public class Attendance {
 	}
 	public void setDepartmentShortName(String departmentShortName) {
 		this.departmentShortName = departmentShortName;
+	}
+	public int getCourseCode() {
+		return courseCode;
+	}
+	public void setCourseCode(int courseCode) {
+		this.courseCode = courseCode;
 	}
 		
 	

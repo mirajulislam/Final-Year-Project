@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.example.demo.model.Attendance;
 import com.example.demo.model.Course;
 import com.example.demo.model.CourseAssign;
 import com.example.demo.model.Department;
@@ -103,9 +104,11 @@ public class ViewService {
 	
 	public ModelAndView searchAttendance(Model model) {
 		ModelAndView mav = new ModelAndView();
-		List<CourseAssign>courseAssign=findAllService.listCourseAssign();
-		model.addAttribute("serachAttendance",courseAssign);
-		mav.setViewName("register/AttendanceSearch");
+		Attendance attendance=new Attendance();
+		List<CourseAssign>courseAssignList=findAllService.listCourseAssign();
+		mav.addObject("attendance", attendance);
+		model.addAttribute("courseAssignList",courseAssignList);
+		mav.setViewName("attendance/AttendanceSearch");
 		return mav;
 		
 	}
