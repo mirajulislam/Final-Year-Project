@@ -1,5 +1,6 @@
 package com.example.demo.services;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import com.example.demo.model.CourseAssign;
 import com.example.demo.model.Department;
 import com.example.demo.model.Student;
 import com.example.demo.model.Teacher;
+import com.example.demo.repository.AttendanceRepository;
 @Service
 public class ViewService {
 	
@@ -24,6 +26,8 @@ public class ViewService {
 	private StudentService studentService;
 	@Autowired
 	private FindAllService findAllService;
+	@Autowired
+	private AttendanceRepository attendanceRepository;
 	
 	public ModelAndView teacherReg() {   
 		Teacher teacher=new Teacher();
@@ -105,13 +109,21 @@ public class ViewService {
 	public ModelAndView searchAttendance(Model model) {
 		ModelAndView mav = new ModelAndView();
 		Attendance attendance=new Attendance();
-		List<CourseAssign>courseAssignList=findAllService.listCourseAssign();
+		List<String>departMentList=findAllService.listDepartName();
+		List<String>courseCodeList=findAllService.listDepartName();
 		mav.addObject("attendance", attendance);
-		model.addAttribute("courseAssignList",courseAssignList);
+		model.addAttribute("departMentList",departMentList);
+		model.addAttribute("courseCodeList",courseCodeList);
 		mav.setViewName("attendance/AttendanceSearch");
 		return mav;
 		
 	}
 	
-	
+	public ModelAndView resutSearchAttendance(Model model,String attendanceDate, String courseCode, String departmentShortName) {
+		ModelAndView mav = new ModelAndView();
+		List<Attendance>attendanceResult=attendanceRepository.findByAttendanceDateAndCourseCodeAndDepartmentShortName(attendanceDate, courseCode, departmentShortName);
+		model.addAttribute("attendanceResult",attendanceResult);
+		mav.setViewName("attendance/AttendanceResult");
+		return mav;		
+	}
 }

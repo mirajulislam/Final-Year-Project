@@ -1,5 +1,8 @@
 package com.example.demo.controller;
 
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.model.Attendance;
@@ -76,11 +80,13 @@ public class MainController {
 		
 	}
 	
-	@RequestMapping(value = "/serachAtten", method = RequestMethod.POST)
-	public ModelAndView serachAtten(Attendance attendance) {
-		return null;
-//		saveService.saveDepartment(attendance);
-//		return viewService.success();
+	@RequestMapping(value = "/searchAttentdance", method = RequestMethod.POST)
+	public ModelAndView serachAtten(Model model,Attendance attendance,@RequestParam("attenDate") Date attenDate) {
+		DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+	    String today = formatter.format(attenDate);
+
+	    System.out.println(today);
+		return viewService.resutSearchAttendance(model,today, attendance.getCourseCode(),attendance.getAttendanceDate());
 	}
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)

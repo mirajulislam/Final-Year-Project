@@ -57,14 +57,14 @@
 		</nav>
 		<div class="row">
 			<div class="col-md-6">
-				<form th:action="@{/searchAttent}" th:object="${attendance}" method="post">
+				<form th:action="@{/searchAttentdance}" th:object="${attendance}" method="post">
 
 						<fieldset>
 							<legend class="text-center"> Attendance Search </legend>
 
 							<div class="form-group">
 								<label for="teacherId"><span class="req">* </span>
-									Choose Date: </label> <input type="date" name="attendanceDate" id="attendanceDate" class="form-control">
+									Choose Date: </label> <input type="date" name="attenDate" id="attenDate" class="form-control">
 							</div>
 
 							<div class="form-group">
@@ -72,7 +72,7 @@
 									Select Course Code: </label> <select name="courseCode" id="courseCode"
 									class="form-control">
 									<option value="">.......</option>
-									<option th:each="courseAssign:${courseAssignList}"
+									<option th:each="courseAssign:${courseCodeList}"
 										th:value="${courseAssign.courseCode}"
 										th:utext="${courseAssign.courseCode}"></option>
 								</select>
@@ -83,7 +83,7 @@
 								</span> Select Department Name: </label> <select name="departmentShortName"
 									id="departmentShortName" class="form-control">
 									<option value="">.......</option>
-									<option th:each="courseAssign:${courseAssignList}"
+									<option th:each="courseAssign:${departMentList}"
 										th:value="${courseAssign.departmentShortName}"
 										th:utext="${courseAssign.departmentShortName}"></option>
 								</select>

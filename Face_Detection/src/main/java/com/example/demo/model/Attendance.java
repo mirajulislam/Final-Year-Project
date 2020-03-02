@@ -1,6 +1,5 @@
 package com.example.demo.model;
 
-import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,16 +12,17 @@ public class Attendance {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int attendanceId;
-	private Date attendanceDate;
+	private String attendanceDate;
 	private int studentId;
-	private int courseCode;
+	private String courseCode;
 	private int isAttendance;
 	private String departmentShortName;
 	
-	public Date getAttendanceDate() {
+
+	public String getAttendanceDate() {
 		return attendanceDate;
 	}
-	public void setAttendanceDate(Date attendanceDate) {
+	public void setAttendanceDate(String attendanceDate) {
 		this.attendanceDate = attendanceDate;
 	}
 	public int getStudentId() {
@@ -49,12 +49,13 @@ public class Attendance {
 	public void setDepartmentShortName(String departmentShortName) {
 		this.departmentShortName = departmentShortName;
 	}
-	public int getCourseCode() {
+	public String getCourseCode() {
 		return courseCode;
 	}
-	public void setCourseCode(int courseCode) {
+	public void setCourseCode(String courseCode) {
 		this.courseCode = courseCode;
 	}
-		
+
+	
 	
 }

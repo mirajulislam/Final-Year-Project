@@ -48,9 +48,13 @@ public class FindAllService {
 		return departmentRepository.findAll();   	
     }
     
-    public List<CourseAssign>listCourseAssign(){
-		return courseAssignRepository.findAll();   	
+    public List<String> listCourseCode(){
+		return courseAssignRepository.findDistinctByCourseCode();   	
     }
+    
+    public List<String> listDepartName(){
+  		return courseAssignRepository.findDistinctByDepartmentShortName();   	
+      }
     
 //    public List fetchAttendance() {
 //    	return null;
