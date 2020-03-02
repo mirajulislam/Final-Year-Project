@@ -107,8 +107,8 @@ public class ViewService {
 	public ModelAndView searchAttendance(Model model) {
 		ModelAndView mav = new ModelAndView();
 		Attendance attendance=new Attendance();
-		List<String>departMentList=findAllService.listDepartName();
-		List<String>courseCodeList=findAllService.listDepartName();
+		List<Department> departMentList=findAllService.listDepartName();
+		List<Course> courseCodeList=findAllService.listCourseCode();
 		mav.addObject("attendance", attendance);
 		model.addAttribute("departMentList",departMentList);
 		model.addAttribute("courseCodeList",courseCodeList);
@@ -139,8 +139,8 @@ public class ViewService {
         ModelAndView mav = new ModelAndView();
         mav.addObject("attendance", attendance);
         mav.setViewName("attendance/AddAttendance");
-		List<String>departMentList=findAllService.listDepartName();
-		List<String>courseCodeList=findAllService.listDepartName();
+		List<Department> departMentList=findAllService.listDepartName();
+		List<Course> courseCodeList=findAllService.listCourseCode();
 		mav.addObject("attendance", attendance);
 		model.addAttribute("departMentList",departMentList);
 		model.addAttribute("courseCodeList",courseCodeList);
