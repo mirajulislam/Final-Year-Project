@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.model.Attendance;
 import com.example.demo.model.Course;
+import com.example.demo.model.CourseAssign;
 import com.example.demo.model.Department;
 import com.example.demo.model.Student;
 import com.example.demo.model.Teacher;
@@ -49,12 +50,12 @@ public class FindAllService {
 		return departmentRepository.findAll();   	
     }
     
-    public List<String> listCourseCode(){
-		return courseAssignRepository.findDistinctByCourseCode();   	
+    public List<Course> listCourseCode(){
+		return courseRepository.findAll();   	
     }
     
-    public List<String> listDepartName(){
-  		return courseAssignRepository.findDistinctByDepartmentShortName();   	
+    public List<Department> listDepartName(){
+  		return departmentRepository.findAll();   	
       }
     
    public void deleteAttendance(int id) {

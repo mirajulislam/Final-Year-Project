@@ -86,7 +86,8 @@ public class MainController {
 	public ModelAndView serachAtten(Model model,Attendance attendance,@RequestParam("attenDate") Date attenDate) {
 		DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 	    String today = formatter.format(attenDate);
-		return viewService.resutSearchAttendance(model,today, attendance.getCourseCode(),attendance.getAttendanceDate());
+	    attendance.setAttendanceDate(today);
+		return viewService.resutSearchAttendance(model,attendance.getAttendanceDate(),attendance.getCourseCode(),attendance.getDepartmentShortName());
 	}
 	
 	@RequestMapping(value = "/saveAttentdance", method = RequestMethod.POST)
