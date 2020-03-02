@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -35,6 +36,7 @@ public class MainController {
 
 	@Autowired
 	private CommenService commenService;
+
 
 	@RequestMapping(value = "/teacherRegisterSave", method = RequestMethod.POST)
 	public ModelAndView saveTeacher(Teacher teacher) {
@@ -84,10 +86,22 @@ public class MainController {
 	public ModelAndView serachAtten(Model model,Attendance attendance,@RequestParam("attenDate") Date attenDate) {
 		DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 	    String today = formatter.format(attenDate);
-
-	    System.out.println(today);
 		return viewService.resutSearchAttendance(model,today, attendance.getCourseCode(),attendance.getAttendanceDate());
 	}
+	
+	@RequestMapping(value = "/saveAttentdance", method = RequestMethod.POST)
+	public ModelAndView saveAttendance(Attendance attendance,@RequestParam("attenDate") Date attenDate) {
+		DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+	    String today = formatter.format(attenDate);
+	    attendance.setAttendanceDate(today);
+		saveService.saveAttendance(attendance);
+		return viewService.success();
+	}
+	
+    @RequestMapping(path = "/delete/{attendanceId}")
+    public ModelAndView deleteAttendanceById(Model model, @PathVariable("attendanceId") int attendanceId){       
+        return viewService.deleteAttendance(attendanceId);
+    }
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView homePage() {
@@ -161,6 +175,11 @@ public class MainController {
 	@RequestMapping(value = "/searchAttendance", method = RequestMethod.GET)
 	public ModelAndView searchAttendance(Model model) {
 		return viewService.searchAttendance(model);
+	}
+	
+	@RequestMapping(value = "/addAttendance", method = RequestMethod.GET)
+	public ModelAndView addAttendance(Model model) {
+		return viewService.addAttendance(model);
 	}
 
 }

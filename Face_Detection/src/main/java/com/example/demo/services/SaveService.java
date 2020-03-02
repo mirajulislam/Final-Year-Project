@@ -3,11 +3,13 @@ package com.example.demo.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.model.Attendance;
 import com.example.demo.model.Course;
 import com.example.demo.model.CourseAssign;
 import com.example.demo.model.Department;
 import com.example.demo.model.Student;
 import com.example.demo.model.Teacher;
+import com.example.demo.repository.AttendanceRepository;
 import com.example.demo.repository.CourseAssignRepository;
 import com.example.demo.repository.CourseRepository;
 import com.example.demo.repository.DepartmentRepository;
@@ -25,6 +27,8 @@ public class SaveService {
 	private TeacherServiceImp teacherServiceImp;
 	@Autowired
 	private StudentServiceImp studentServiceImp;
+	@Autowired
+	private AttendanceRepository attendanceRepository;
 	
 	
 	//Course Save
@@ -53,5 +57,7 @@ public class SaveService {
 		teacherServiceImp.saveTeache(teacher);
 	}
 	
-	
+	public void saveAttendance(Attendance attendance) {
+		attendanceRepository.save(attendance);
+	}
 }

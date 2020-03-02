@@ -1,6 +1,4 @@
 package com.example.demo.services;
-
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -125,5 +123,28 @@ public class ViewService {
 		model.addAttribute("attendanceResult",attendanceResult);
 		mav.setViewName("attendance/AttendanceResult");
 		return mav;		
+	}
+	
+	public ModelAndView deleteAttendance(int id) {
+		ModelAndView mav = new ModelAndView();
+		findAllService.deleteAttendance(id);
+		mav.setViewName("attendance/result");
+		return mav;
+		
+	}
+	
+	public ModelAndView addAttendance(Model model) {
+		Attendance attendance=new Attendance();
+		List<Student>studentList=findAllService.listStudent();
+        ModelAndView mav = new ModelAndView();
+        mav.addObject("attendance", attendance);
+        mav.setViewName("attendance/AddAttendance");
+		List<String>departMentList=findAllService.listDepartName();
+		List<String>courseCodeList=findAllService.listDepartName();
+		mav.addObject("attendance", attendance);
+		model.addAttribute("departMentList",departMentList);
+		model.addAttribute("courseCodeList",courseCodeList);
+        model.addAttribute("studentList",studentList);		
+        return mav;
 	}
 }

@@ -1,12 +1,13 @@
 package com.example.demo.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.model.Attendance;
 import com.example.demo.model.Course;
-import com.example.demo.model.CourseAssign;
 import com.example.demo.model.Department;
 import com.example.demo.model.Student;
 import com.example.demo.model.Teacher;
@@ -56,7 +57,13 @@ public class FindAllService {
   		return courseAssignRepository.findDistinctByDepartmentShortName();   	
       }
     
-//    public List fetchAttendance() {
-//    	return null;
-//    }
+   public void deleteAttendance(int id) {
+	   Optional<Attendance> attendance=attendanceRepository.findById(id);
+	   if(attendance.isPresent()) {
+		   attendanceRepository.deleteById(id);
+	   }
+	  
+   }
+
+    
 }
