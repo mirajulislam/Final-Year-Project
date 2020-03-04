@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.sql.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -116,6 +118,14 @@ public class MainController {
 	public ModelAndView teacherRegister() {
 		return viewService.teacherReg();
 
+	}
+	
+	@RequestMapping(value = "/TakeAttendance", method = RequestMethod.GET)
+	public ModelAndView takeAttendance() throws IOException {
+		File dir=new File("C:\\Face_Attendance");
+		Runtime.getRuntime().exec("cmd /c start C:\\Face_Attendance\\start.bat",null,dir);
+	    return viewService.takeAtten();
+	
 	}
 
 	@RequestMapping(value = "/Student-register", method = RequestMethod.GET)

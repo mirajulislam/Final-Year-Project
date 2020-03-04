@@ -147,4 +147,10 @@ public class ViewService {
         model.addAttribute("studentList",studentList);		
         return mav;
 	}
+	
+	public ModelAndView takeAtten() {   
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("attendance/TakeAttendance");
+        return mav;
+    }
 }
