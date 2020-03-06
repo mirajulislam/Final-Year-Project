@@ -89,7 +89,7 @@ public class MainController {
 		DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 	    String today = formatter.format(attenDate);
 	    attendance.setAttendanceDate(today);
-		return viewService.resutSearchAttendance(model,attendance.getAttendanceDate(),attendance.getCourseCode(),attendance.getDepartmentShortName());
+		return viewService.resutSearchAttendance(model,attendance.getAttendanceDate(),attendance.getCourseCode());
 	}
 	
 	@RequestMapping(value = "/saveAttentdance", method = RequestMethod.POST)

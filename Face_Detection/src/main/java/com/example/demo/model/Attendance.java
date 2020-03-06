@@ -13,29 +13,14 @@ public class Attendance {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int attendanceId;
 	private String attendanceDate;
-	private int studentId;
 	private String courseCode;
-	private int isAttendance;
-	private String departmentShortName;
+	private String isAttendance;
 	
-
 	public String getAttendanceDate() {
 		return attendanceDate;
 	}
 	public void setAttendanceDate(String attendanceDate) {
 		this.attendanceDate = attendanceDate;
-	}
-	public int getStudentId() {
-		return studentId;
-	}
-	public void setStudentId(int studentId) {
-		this.studentId = studentId;
-	}
-	public int getIsAttendance() {
-		return isAttendance;
-	}
-	public void setIsAttendance(int isAttendance) {
-		this.isAttendance = isAttendance;
 	}
 	public int getAttendanceId() {
 		return attendanceId;
@@ -43,19 +28,19 @@ public class Attendance {
 	public void setAttendanceId(int attendanceId) {
 		this.attendanceId = attendanceId;
 	}
-	public String getDepartmentShortName() {
-		return departmentShortName;
-	}
-	public void setDepartmentShortName(String departmentShortName) {
-		this.departmentShortName = departmentShortName;
-	}
 	public String getCourseCode() {
 		return courseCode;
 	}
 	public void setCourseCode(String courseCode) {
 		this.courseCode = courseCode;
 	}
+	public String getIsAttendance() {
+		return isAttendance;
+	}
+	public void setIsAttendance(String isAttendance) {
+		this.isAttendance = isAttendance;
+	}
+	
+	
 
-	
-	
 }

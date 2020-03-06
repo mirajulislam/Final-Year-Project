@@ -9,5 +9,5 @@ import com.example.demo.model.Attendance;
 @Repository
 public interface AttendanceRepository extends JpaRepository<Attendance, Integer>{
 
-	List<Attendance> findByAttendanceDateAndCourseCodeAndDepartmentShortName(String attendanceDate,String courseCode, String departmentShortName);
+	List<Attendance> findByAttendanceDateAndCourseCode(String attendanceDate,String courseCode);
 }

@@ -117,9 +117,9 @@ public class ViewService {
 		
 	}
 	
-	public ModelAndView resutSearchAttendance(Model model,String attendanceDate, String courseCode, String departmentShortName) {
+	public ModelAndView resutSearchAttendance(Model model,String attendanceDate, String courseCode) {
 		ModelAndView mav = new ModelAndView();
-		List<Attendance>attendanceResult=attendanceRepository.findByAttendanceDateAndCourseCodeAndDepartmentShortName(attendanceDate, courseCode, departmentShortName);
+		List<Attendance>attendanceResult=attendanceRepository.findByAttendanceDateAndCourseCode(attendanceDate, courseCode);
 		model.addAttribute("attendanceResult",attendanceResult);
 		mav.setViewName("attendance/AttendanceResult");
 		return mav;		

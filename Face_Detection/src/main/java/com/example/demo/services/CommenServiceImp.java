@@ -26,7 +26,7 @@ public class CommenServiceImp implements CommenService{
 	
 	@Override
 	public List<Attendance> findByAttendanceDateAndCourseCodeAndDepartmentShortName(String attendanceDate, String courseCode, String departmentShortName) {
-		return attendanceRepository.findByAttendanceDateAndCourseCodeAndDepartmentShortName(attendanceDate, courseCode, departmentShortName);
+		return attendanceRepository.findByAttendanceDateAndCourseCode(attendanceDate, courseCode);
 	}
 
 }
