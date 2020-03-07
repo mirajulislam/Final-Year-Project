@@ -23,6 +23,7 @@ import com.example.demo.model.CourseAssign;
 import com.example.demo.model.Department;
 import com.example.demo.model.Student;
 import com.example.demo.model.Teacher;
+import com.example.demo.model.TeacherCourseAssign;
 import com.example.demo.services.CommenService;
 import com.example.demo.services.SaveService;
 import com.example.demo.services.ViewService;
@@ -64,8 +65,8 @@ public class MainController {
 		return viewService.success();
 	}
 
-	@RequestMapping(value = "/courseAssignSave", method = RequestMethod.POST)
-	public ModelAndView saveCourseAssign(@Valid CourseAssign courseAssign, BindingResult bindingResult) {
+	@RequestMapping(value = "/studentCourseAssignSave", method = RequestMethod.POST)
+	public ModelAndView saveStudentCourseAssign(@Valid CourseAssign courseAssign, BindingResult bindingResult) {
 		ModelAndView model = new ModelAndView();
 		CourseAssign courseAssignExists = commenService.findByStudentIdAndCourseCode(courseAssign.getStudentId(),
 				courseAssign.getCourseCode());
@@ -79,6 +80,25 @@ public class MainController {
 			model.addObject("msg", "User has been registered successfully!");
 			model.addObject("courseAssign", new CourseAssign());
 			model.setViewName("register/courseAssign");
+		}
+      return model;
+		
+	}
+	
+	@RequestMapping(value = "/teacherCourseAssignSave", method = RequestMethod.POST)
+	public ModelAndView saveTeacherCourseAssign(@Valid TeacherCourseAssign teacherCourseAssign, BindingResult bindingResult) {
+		ModelAndView model = new ModelAndView();
+		TeacherCourseAssign tecCourseAssignExists = commenService.findByTeacherIdAndCourseCode(teacherCourseAssign.getTeacherId(), teacherCourseAssign.getCourseCode());
+		if (tecCourseAssignExists != null) {
+			bindingResult.rejectValue("teacherId", "error.teacherCourseAssign", "This course already exists for this teacher!");
+		}
+		if (bindingResult.hasErrors()) {
+			model.setViewName("register/teacherCourseAssign");
+		} else {
+			saveService.saveTeacherCourseAssign(teacherCourseAssign);			
+			model.addObject("msg", "User has been registered successfully!");
+			model.addObject("teacherCourseAssign", new TeacherCourseAssign());
+			model.setViewName("register/teacherCourseAssign");
 		}
       return model;
 		
@@ -164,6 +184,11 @@ public class MainController {
 	@RequestMapping(value = "/courseAssignView", method = RequestMethod.GET)
 	public ModelAndView courseAssignView(Model model) {
 		return viewService.courseAssignInsert(model);
+	}
+	
+	@RequestMapping(value = "/teacherCourseAssignView", method = RequestMethod.GET)
+	public ModelAndView teacherCourseAssignView(Model model) {
+		return viewService.teacherCourseAssignInsert(model);
 	}
 
 	@RequestMapping(value = "/studentProfile", method = RequestMethod.GET)

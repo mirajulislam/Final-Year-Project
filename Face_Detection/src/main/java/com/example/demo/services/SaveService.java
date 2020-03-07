@@ -9,10 +9,12 @@ import com.example.demo.model.CourseAssign;
 import com.example.demo.model.Department;
 import com.example.demo.model.Student;
 import com.example.demo.model.Teacher;
+import com.example.demo.model.TeacherCourseAssign;
 import com.example.demo.repository.AttendanceRepository;
 import com.example.demo.repository.CourseAssignRepository;
 import com.example.demo.repository.CourseRepository;
 import com.example.demo.repository.DepartmentRepository;
+import com.example.demo.repository.TeacherCourseAssignRepository;
 
 @Service
 public class SaveService {
@@ -23,6 +25,8 @@ public class SaveService {
 	private DepartmentRepository departmentRepository;
 	@Autowired 
 	private CourseAssignRepository courseAssignRepository;
+	@Autowired 
+	private TeacherCourseAssignRepository teacherCourseAssignRepository;
 	@Autowired
 	private TeacherServiceImp teacherServiceImp;
 	@Autowired
@@ -44,6 +48,10 @@ public class SaveService {
 	// CourseAssign save
 	public void saveCourseAssign(CourseAssign courseAssign) {
 		courseAssignRepository.save(courseAssign);
+	}
+	
+	public void saveTeacherCourseAssign(TeacherCourseAssign  teacherCourseAssign) {
+		teacherCourseAssignRepository.save(teacherCourseAssign);
 	}
 	
 	//studentSave

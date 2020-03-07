@@ -14,6 +14,7 @@ import com.example.demo.model.CourseAssign;
 import com.example.demo.model.Department;
 import com.example.demo.model.Student;
 import com.example.demo.model.Teacher;
+import com.example.demo.model.TeacherCourseAssign;
 import com.example.demo.repository.AttendanceRepository;
 @Service
 public class ViewService {
@@ -101,6 +102,20 @@ public class ViewService {
 		model.addAttribute("courseList",courseList);
 		model.addAttribute("departmentList",departmentList);
 		mav.setViewName("register/courseAssign");
+        return mav;
+	}
+	
+	public ModelAndView teacherCourseAssignInsert(Model model) {
+		ModelAndView mav = new ModelAndView();
+		TeacherCourseAssign teacherCourseAssign=new TeacherCourseAssign();
+		List<Teacher>teacherList=findAllService.listTeacher();
+		List<Course>courseList=findAllService.listCourse();
+		List<Department>departmentList=findAllService.listDepartment();		
+		mav.addObject("teacherCourseAssign", teacherCourseAssign);
+		model.addAttribute("teacherList",teacherList);
+		model.addAttribute("courseList",courseList);
+		model.addAttribute("departmentList",departmentList);
+		mav.setViewName("register/teacherCourseAssign");
         return mav;
 	}
 	

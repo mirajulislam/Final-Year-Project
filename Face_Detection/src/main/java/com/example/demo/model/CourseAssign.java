@@ -6,13 +6,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 @Entity
-@Table(name = "assign_course")
+@Table(name = "student_course_assign")
 public class CourseAssign {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private int studentId;
-	private int teacherId;
 	private String courseCode;
 	private String departmentShortName;
 	
@@ -27,12 +26,6 @@ public class CourseAssign {
 	}
 	public void setStudentId(int studentId) {
 		this.studentId = studentId;
-	}
-	public int getTeacherId() {
-		return teacherId;
-	}
-	public void setTeacherId(int teacherId) {
-		this.teacherId = teacherId;
 	}
 	public String getCourseCode() {
 		return courseCode;
