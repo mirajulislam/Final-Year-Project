@@ -11,13 +11,11 @@
 	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
-<title>Register Form</title>
+<title>Course Assign</title>
 </head>
 <body>
-
-
-	<div class="container">
-		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<div class="container">
+		 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 			<a class="navbar-brand" href="#"><span th:utext="${userName}"></span></a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#navbarSupportedContent"
@@ -28,22 +26,47 @@
 
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav mr-auto">
-					<li class="nav-item active"><a class="nav-link" href="#">Home
+					<li><a class="nav-link" th:href="@{/teacherProfile}">Home
 							<span class="sr-only">(current)</span>
 					</a></li>
-					<li class="nav-item"><a class="nav-link"
-						th:href="@{/Student-register}">Student Register</a></li>
-					<li class="nav-item"><a class="nav-link"
-						th:href="@{/Teacher-register}">Teacher Register</a></li>
+
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 						role="button" data-toggle="dropdown" aria-haspopup="true"
-						aria-expanded="false"> Type </a>
+						aria-expanded="false"> Registration </a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<a class="dropdown-item" href="#">Action</a> <a
-								class="dropdown-item" href="#">Another action</a>
+						<div class="dropdown-divider"></div>
+							<a class="dropdown-item" th:href="@{/Student-register}">Student Registration</a> 
+							<div class="dropdown-divider"></div><a
+								class="dropdown-item" th:href="@{/Teacher-register}">Teacher Registration</a>
+						</div></li>
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/TakeAttendance}">Upload Photo</a></li>
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+						role="button" data-toggle="dropdown" aria-haspopup="true"
+						aria-expanded="false"> Attendance </a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<div class="dropdown-divider"></div>
+							<a class="dropdown-item" th:href="@{/TakeAttendance}">Take Attendance</a>
 							<div class="dropdown-divider"></div>
-							<a class="dropdown-item" href="#">Something else here</a>
+							<a class="dropdown-item" th:href="@{/takePhotoExample}">Take Attendance Photo</a>
+							 <div class="dropdown-divider"></div><a	class="dropdown-item" th:href="@{/addAttendance}">Add Manual Attendance</a>
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item" th:href="@{/searchAttendance}">Search Attendance</a>
+						</div></li>
+					<li class="nav-item dropdown active"><a
+						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+						role="button" data-toggle="dropdown" aria-haspopup="true"
+						aria-expanded="false"> Assign </a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<div class="dropdown-divider"></div>
+							<a class="dropdown-item" th:href="@{/courseInsertView}">Course Assign</a> 
+							<div class="dropdown-divider"></div><a
+								class="dropdown-item" th:href="@{/deparmentInsertView}">Department Assign</a>								
+								<div class="dropdown-divider"></div><a class="dropdown-item" th:href="@{/courseAssignView}">Student Course Assign</a>						
+								<div class="dropdown-divider"></div><a class="dropdown-item" th:href="@{/teacherCourseAssignView}">Teacher Course Assign</a>
+							
 						</div></li>
 					<li class="nav-item"><a class="nav-link" th:href="@{/logout}">Sign
 							out</a></li>
@@ -59,7 +82,7 @@
 			<div class="col-md-6">
 				<form action="courseSave" method="post">
 					<fieldset>
-						<legend class="text-center"> Course Registration Form </legend>
+						<legend class="text-center">Course Assign</legend>
 
 						<div class="form-group">
 							<label for="courseName"><span class="req">* </span>
@@ -96,13 +119,20 @@
 
 					</fieldset>
 				</form>
-				<!-- ends register form -->
 			</div>
-			<!-- ends col-6 -->
-
-
-		</div>
 	</div>
+	</div>
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
+		integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
+		integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
+		crossorigin="anonymous"></script>
 </body>
 </html>
 

@@ -31,16 +31,19 @@ public class ViewService {
 	public ModelAndView teacherReg() {   
 		Teacher teacher=new Teacher();
         ModelAndView mav = new ModelAndView();
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        teacherService.findByUserName(auth.getName());
-        mav.addObject("userName", teacher.getFirstName()+" "+ teacher.getLastName());
         mav.addObject("teacher", teacher);
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        teacher=teacherService.findByUserName(auth.getName());
+	    mav.addObject("userName", teacher.getFirstName()+" "+ teacher.getLastName()); 
         mav.setViewName("userRegister/teacherReg");
         return mav;
     }
 	
 	public ModelAndView studentReg() {     
         ModelAndView mav = new ModelAndView();
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    Teacher teacher=teacherService.findByUserName(auth.getName());
+	    mav.addObject("userName", teacher.getFirstName()+" "+ teacher.getLastName());        
         mav.setViewName("userRegister/studentReg");
         return mav;
     }
@@ -77,6 +80,9 @@ public class ViewService {
 
 	public ModelAndView courseInsert(Model model) {
 		ModelAndView mav = new ModelAndView();
+	    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    Teacher teacher=teacherService.findByUserName(auth.getName());
+	    mav.addObject("userName", teacher.getFirstName()+" "+ teacher.getLastName());
 		List<Department>departmentList=findAllService.listDepartment();
 		model.addAttribute("departmentList",departmentList);
 		mav.setViewName("register/course");
@@ -85,12 +91,18 @@ public class ViewService {
 	
 	public ModelAndView departmentInsert() {
 		ModelAndView mav = new ModelAndView();
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    Teacher teacher=teacherService.findByUserName(auth.getName());
+	    mav.addObject("userName", teacher.getFirstName()+" "+ teacher.getLastName());
 		mav.setViewName("register/department");
         return mav;
 	}
 	
 	public ModelAndView courseAssignInsert(Model model) {
 		ModelAndView mav = new ModelAndView();
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    Teacher teacher=teacherService.findByUserName(auth.getName());
+	    mav.addObject("userName", teacher.getFirstName()+" "+ teacher.getLastName());		
 		CourseAssign courseAssign=new CourseAssign();
 		List<Student>studentList=findAllService.listStudent();
 		List<Teacher>teacherList=findAllService.listTeacher();
@@ -115,12 +127,18 @@ public class ViewService {
 		model.addAttribute("teacherList",teacherList);
 		model.addAttribute("courseList",courseList);
 		model.addAttribute("departmentList",departmentList);
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    Teacher teacher=teacherService.findByUserName(auth.getName());
+	    mav.addObject("userName", teacher.getFirstName()+" "+ teacher.getLastName());		
 		mav.setViewName("register/teacherCourseAssign");
         return mav;
 	}
 	
 	public ModelAndView searchAttendance(Model model) {
 		ModelAndView mav = new ModelAndView();
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    Teacher teacher=teacherService.findByUserName(auth.getName());
+	    mav.addObject("userName", teacher.getFirstName()+" "+ teacher.getLastName());		
 		Attendance attendance=new Attendance();
 		List<Department> departMentList=findAllService.listDepartName();
 		List<Course> courseCodeList=findAllService.listCourseCode();
@@ -153,6 +171,9 @@ public class ViewService {
 		List<Student>studentList=findAllService.listStudent();
         ModelAndView mav = new ModelAndView();
         mav.addObject("attendance", attendance);
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    Teacher teacher=teacherService.findByUserName(auth.getName());
+	    mav.addObject("userName", teacher.getFirstName()+" "+ teacher.getLastName());
         mav.setViewName("attendance/AddAttendance");
 		List<Department> departMentList=findAllService.listDepartName();
 		List<Course> courseCodeList=findAllService.listCourseCode();
@@ -166,6 +187,12 @@ public class ViewService {
 	public ModelAndView takeAtten() {   
         ModelAndView mav = new ModelAndView();
         mav.setViewName("attendance/TakeAttendance");
+        return mav;
+    }
+	
+	public ModelAndView takeAttenPhoto() {   
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("attendance/Take_Photo");
         return mav;
     }
 }

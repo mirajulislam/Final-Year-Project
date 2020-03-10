@@ -30,7 +30,9 @@ import com.example.demo.services.ViewService;
 
 @Controller
 public class MainController {
-
+	
+	private static String UPLOADED_FOLDER = "C://Face_Attendance//faces//";
+	
 	@Autowired
 	private ViewService viewService;
 
@@ -205,7 +207,7 @@ public class MainController {
 
 	@RequestMapping(value = "/takePhotoExample", method = RequestMethod.GET)
 	public ModelAndView takePhotoExample() {
-		return viewService.teacherReg();
+		return viewService.takeAttenPhoto();
 	}
 	
 	@RequestMapping(value = "/searchAttendance", method = RequestMethod.GET)
