@@ -40,7 +40,7 @@
 								class="dropdown-item" th:href="@{/Teacher-register}">Teacher Registration</a>
 						</div></li>
 					<li class="nav-item"><a class="nav-link"
-						th:href="@{/TakeAttendance}">Upload Photo</a></li>
+						th:href="@{/uploadAttendance}">Upload Attendance Photo</a></li>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 						role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -79,7 +79,7 @@
 		</nav>
 		<div class="row">
 			<div class="col-md-6">
-				<form action="studentRegisterSave" method="post">
+				<form action="studentRegisterSave" method="post" enctype="multipart/form-data">
 					<fieldset>
 						<legend class="text-center">
 							Student Registration Form
@@ -128,7 +128,7 @@
 								Phone Number: </label> <input required type="text" name="mobile"
 								id="mobile" class="form-control phone" maxlength="28"
 								onkeyup="validatephone(this);"
-								placeholder="not used for marketing" />
+								 />
 						</div>
                         
                         <div class="form-group">
@@ -140,7 +140,7 @@
 						
 						<div class="form-group">
 							<label for="department"><span class="req">* </span>
-								Select Image file (file name always your id) : </label> <input required name="file" type="file"
+								Select Image file (file name always your id, file size max 1MB and upload clean photo) : </label> <input required name="file" type="file"
 								class="form-control batch" 
 								id="batch" />
 						</div>

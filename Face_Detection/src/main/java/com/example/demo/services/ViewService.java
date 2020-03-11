@@ -195,4 +195,10 @@ public class ViewService {
         mav.setViewName("attendance/Take_Photo");
         return mav;
     }
+	
+	public ModelAndView takeAttenPhotoUpload() {   
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("attendance/AttendancePhoto");
+        return mav;
+    }
 }

@@ -2,6 +2,9 @@ package com.example.demo.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -15,7 +18,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.model.Attendance;
 import com.example.demo.model.Course;
@@ -32,6 +37,7 @@ import com.example.demo.services.ViewService;
 public class MainController {
 	
 	private static String UPLOADED_FOLDER = "C://Face_Attendance//faces//";
+	private static String UPLOADED_FOLDER1 = "C://Face_Attendance//";
 	
 	@Autowired
 	private ViewService viewService;
@@ -50,8 +56,34 @@ public class MainController {
 	}
 
 	@RequestMapping(value = "/studentRegisterSave", method = RequestMethod.POST)
-	public ModelAndView saveStudent(Student student) {
-		saveService.saveStudent(student);
+	public ModelAndView saveStudent(@RequestParam("file") MultipartFile file,
+            RedirectAttributes redirectAttributes,Student student) {
+		   try {
+
+	            // Get the file and save it somewhere
+	            byte[] bytes = file.getBytes();
+	            Path path = Paths.get(UPLOADED_FOLDER + file.getOriginalFilename());
+	            Files.write(path, bytes);
+	        	saveService.saveStudent(student);
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        }
+		return viewService.success();
+	}
+	
+	@RequestMapping(value = "/attendancePhotoUpload", method = RequestMethod.POST)
+	public ModelAndView savePhoto(@RequestParam("file") MultipartFile file,
+            RedirectAttributes redirectAttributes) {
+		   try {
+
+	            // Get the file and save it somewhere
+	            byte[] bytes = file.getBytes();
+	            Path path = Paths.get(UPLOADED_FOLDER1 + file.getOriginalFilename());
+	            Files.write(path, bytes);
+	        	
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        }
 		return viewService.success();
 	}
 
@@ -218,6 +250,11 @@ public class MainController {
 	@RequestMapping(value = "/addAttendance", method = RequestMethod.GET)
 	public ModelAndView addAttendance(Model model) {
 		return viewService.addAttendance(model);
+	}
+	
+	@RequestMapping(value = "/uploadAttendance", method = RequestMethod.GET)
+	public ModelAndView uploadAttendancePhoto() {
+		return viewService.takeAttenPhotoUpload();
 	}
 
 }
