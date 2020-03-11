@@ -98,12 +98,14 @@
 								placeholder="enter course credit" required />
 						</div>
 						
-							<select name="departmentShortName" id="departmentShortName" class="form-control">
+							<div class="form-group">
+								<label for="courseCode"><span class="req">* </span>
+									Select Course Department: </label><select name="departmentShortName" id="departmentShortName" class="form-control">
 								<option value="">.......</option>
 								<option th:each="department:${departmentList}"
 								th:value="${department.departmentShortName}"
 								th:utext="${department.departmentShortName}"></option>
-							</select>						
+							</select>	</div>					
 
 						<div class="form-group">
 							<label for="courseCode"><span class="req">* </span> Course
