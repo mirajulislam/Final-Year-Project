@@ -10,4 +10,5 @@ import com.example.demo.model.Attendance;
 public interface AttendanceRepository extends JpaRepository<Attendance, Integer>{
 
 	List<Attendance> findByAttendanceDateAndCourseCode(String attendanceDate,String courseCode);
+	List<Attendance> findByAttendanceDateAndCourseCodeAndIsAttendance(String attendanceDate,String courseCode,String isAttendance);
 }

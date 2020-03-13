@@ -146,6 +146,14 @@ public class MainController {
 		return viewService.resutSearchAttendance(model,attendance.getAttendanceDate(),attendance.getCourseCode());
 	}
 	
+	@RequestMapping(value = "/stdsearchAttentdance", method = RequestMethod.POST)
+	public ModelAndView stdserachAtten(Model model,Attendance attendance,@RequestParam("attenDate") Date attenDate) {
+		DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+	    String today = formatter.format(attenDate);
+	    attendance.setAttendanceDate(today);
+		return viewService.resutStdSearchAttendance(model,attendance.getAttendanceDate(),attendance.getCourseCode(),attendance.getIsAttendance());
+	}
+	
 	@RequestMapping(value = "/saveAttentdance", method = RequestMethod.POST)
 	public ModelAndView saveAttendance(Attendance attendance,@RequestParam("attenDate") Date attenDate) {
 		DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
@@ -245,6 +253,11 @@ public class MainController {
 	@RequestMapping(value = "/searchAttendance", method = RequestMethod.GET)
 	public ModelAndView searchAttendance(Model model) {
 		return viewService.searchAttendance(model);
+	}
+	
+	@RequestMapping(value = "/stdSearchAttendance", method = RequestMethod.GET)
+	public ModelAndView StdsearchAttendance(Model model) {
+		return viewService.stdSearchAttendance(model);
 	}
 	
 	@RequestMapping(value = "/addAttendance", method = RequestMethod.GET)

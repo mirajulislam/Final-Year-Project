@@ -150,9 +150,31 @@ public class ViewService {
 		
 	}
 	
+	public ModelAndView stdSearchAttendance(Model model) {
+		ModelAndView mav = new ModelAndView();
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    Student student=studentService.findByUserName(auth.getName());
+	    mav.addObject("userName", student.getFirstName()+" "+ student.getLastName());
+	    mav.addObject("isAttendance", student.getStudentId());	
+		Attendance attendance=new Attendance();		
+		List<Course> courseCodeList=findAllService.listCourseCode();
+		mav.addObject("attendance", attendance);		
+		model.addAttribute("courseCodeList",courseCodeList);
+		mav.setViewName("attendance/StdAttendanceSearch");
+		return mav;
+		
+	}
 	public ModelAndView resutSearchAttendance(Model model,String attendanceDate, String courseCode) {
 		ModelAndView mav = new ModelAndView();
 		List<Attendance>attendanceResult=attendanceRepository.findByAttendanceDateAndCourseCode(attendanceDate, courseCode);
+		model.addAttribute("attendanceResult",attendanceResult);
+		mav.setViewName("attendance/AttendanceResult");
+		return mav;		
+	}
+	
+	public ModelAndView resutStdSearchAttendance(Model model,String attendanceDate, String courseCode,String isAttendance) {
+		ModelAndView mav = new ModelAndView();
+		List<Attendance>attendanceResult=attendanceRepository.findByAttendanceDateAndCourseCodeAndIsAttendance(attendanceDate, courseCode,isAttendance);
 		model.addAttribute("attendanceResult",attendanceResult);
 		mav.setViewName("attendance/AttendanceResult");
 		return mav;		
