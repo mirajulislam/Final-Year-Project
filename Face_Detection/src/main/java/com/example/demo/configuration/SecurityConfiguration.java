@@ -32,6 +32,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
  private final String teacher_QUERY = "select user_name, password ,'1' as enabled  from create_teacher where user_name=?";
  private final String  teacher_role_query = "select u.user_name, r.role_name from create_teacher u inner join teacher_role ur on(u.teacher_id=ur.teacher_id) inner join user_roled r on(ur.role_id=r.role_id) where u.user_name=?";
 // 
+ private final String  student_QUERY = "select user_name, password ,'1' as enabled  from create_student where user_name=?";
+ private final String  student_role_query = "select u.user_name, r.role_name from create_student u inner join student_role ur on(u.student_id=ur.student_id) inner join user_roled r on(ur.role_id=r.role_id) where u.user_name=?";
+
+ 
  @Override
  protected void configure(AuthenticationManagerBuilder auth) throws Exception {
   auth.jdbcAuthentication()
@@ -42,6 +46,17 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
    .passwordEncoder(bCryptPasswordEncoder);
   
  }
+ 
+// @Override
+// protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+//  auth.jdbcAuthentication()
+//
+//   .usersByUsernameQuery(student_QUERY) 
+//   .authoritiesByUsernameQuery(student_role_query)
+//   .dataSource(dataSource)
+//   .passwordEncoder(bCryptPasswordEncoder);
+//  
+// }
  
  
  @Override
@@ -57,7 +72,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	.antMatchers("/deparmentInsertView/**").hasAnyAuthority("TEACHER_USER")
 	.antMatchers("/courseInsertView/**").hasAnyAuthority("TEACHER_USER")	
 	.antMatchers("/courseAssignView/**").hasAnyAuthority("TEACHER_USER")
-	.antMatchers("/searchAttendance/**").hasAnyAuthority("TEACHER_USER")
+	.antMatchers("/searchAttendance/**").hasAnyAuthority("TEACHER_USER","STUDENT_USER")
+	.antMatchers("/stdSearchAttendance/**").hasAnyAuthority("STUDENT_USER")	
 	.antMatchers("/takePhotoExample/**").hasAnyAuthority("TEACHER_USER")
 	.antMatchers("/teacherCourseAssignView/**").hasAnyAuthority("TEACHER_USER")
 	.antMatchers("/addAttendance/**").hasAnyAuthority("TEACHER_USER")
